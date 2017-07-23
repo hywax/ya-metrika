@@ -1,52 +1,20 @@
-# Parser #
-Парсер для разбора json, xml, serialize, query string в php массив.
-
-## Установка: ##
-
-#### Composer ####
-```
-composer require axp-dev/parser
-```
+# Yandex Metrika API #
+Библиотека для удобного взаимодействия с Yandex Metrika API
 
 ## Документация: ##
-#### Json: ####
+#### Инициализация: ####
 ```php
-$parser = new Parser();
-$json   = '{"id": 1,"name": "A green door","price": 12.50,"tags": ["home", "green"]}';
-$data   = $parser->json($json);
-
-print_r($data);
+$token = '';
+$counter_id = '';
+$YaMetrika = new YaMetrika($token, $counter_id);
 ```
 
-#### Serialize: ####
+#### Данные по шаблону: ####
+За последние N дней:
 ```php
-$parser    = new Parser();
-$serialize = 'a:3:{i:0;s:4:"Math";i:1;s:8:"Language";i:2;s:7:"Science";}';
-$data      = $parser->serialize($serialize);
-
-print_r($data);
+getPreset($template, $days = 30)
 ```
-
-#### Query String: ####
+За указанный период:
 ```php
-$parser      = new Parser();
-$queryString = 'first=value&arr[]=foo+bar&arr[]=baz';
-$data        = $parser->queryString($queryString);
-
-print_r($data);
-```
-
-#### XML: ####
-```php
-$parser      = new Parser();
-$xml         = '<?xml version="1.0" encoding="UTF-8"?>
-                <note>
-                  <to>Tove</to>
-                  <from>Jani</from>
-                  <heading>Reminder</heading>
-                  <body>Don\'t forget me this weekend!</body>
-                </note>';
-$data        = $parser->xml($xml);
-
-print_r($data);
+getPresetForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 10)
 ```
