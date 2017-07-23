@@ -1,0 +1,24 @@
+{
+  "name": "axp-dev/ya-metrika",
+  "description": "Yandex Metrika API Library",
+  "homepage": "https://github.com/axp-dev/ya-metrika",
+  "keywords": ["yandex","metrika","api"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexander Pushkarev",
+      "email": "axp-dev@yandex.com",
+      "homepage": "https://github.com/axp-dev"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.4",
+    "illuminate/support": "^5.4",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "AXP\\YaMetrika\\": "src"
+    }
+  }
+}
