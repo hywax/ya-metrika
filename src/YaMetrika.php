@@ -31,6 +31,20 @@ class YaMetrika
     protected $counterId;
 
     /**
+     * Данные из метрики
+     *
+     * @var array
+     */
+    protected $data;
+
+    /**
+     * Форматированные данные
+     *
+     * @var array
+     */
+    protected $formatData;
+
+    /**
      * YaMetrika constructor
      *
      * @param string $token
@@ -43,18 +57,30 @@ class YaMetrika
     }
 
     /**
+     * Получаем данные
+     *
+     * @return mixed
+     */
+    public function get()
+    {
+        return $this->data;
+    }
+
+    /**
      * Получаем данные по шаблону за последние N дней
      *
      * @param string $template
      * @param int    $days
      *
-     * @return array
+     * @return $this
      */
-    public function getPreset($template, $days = 30)
+    public function setPreset($template, $days = 30)
     {
         list($startDate, $endDate) = $this->differenceDate($days);
 
-        return $this->getPresetForPeriod($template, $startDate, $endDate);
+        $this->setPresetForPeriod($template, $startDate, $endDate);
+
+        return $this;
     }
 
     /**
@@ -65,9 +91,9 @@ class YaMetrika
      * @param DateTime $endDate
      * @param int      $limit
      *
-     * @return array
+     * @return $this
      */
-    public function getPresetForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 10)
+    public function setPresetForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 10)
     {
         $params = [
             'preset'    => $template,
@@ -76,9 +102,9 @@ class YaMetrika
             'limit'     => $limit
         ];
 
-        $request = $this->query($params);
+        $this->data = $this->query($params);
 
-        return $request;
+        return $this;
     }
 
     /**

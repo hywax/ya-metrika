@@ -3,9 +3,10 @@
 include_once '../vendor/autoload.php';
 
 $token = 'AQAAAAAQ9ZGPAARZheuxZMcSUkHMi5RcYU-vi1M';
-$counter_id = '27170768';
+$counter_id = '44611459';
 $YaMetrika = new \AXP\YaMetrika\YaMetrika($token, $counter_id);
 
-$data = $YaMetrika->getPreset('traffic', 31);
+$traffic = $YaMetrika->setPreset('sources_summary', 30)
+                     ->get();
 
-print_r($data);
+print_r( $traffic );
