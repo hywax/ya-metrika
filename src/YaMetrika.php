@@ -10,6 +10,9 @@ use GuzzleHttp\Client as GuzzleClient;
 /**
  * Class YaMetrika
  *
+ * @author  Alexander Pushkarev <axp-dev@yandex.com>
+ * @link    https://github.com/axp-dev/ya-metrika
+ * @license MIT License
  * @package AXP\YaMetrika
  */
 class YaMetrika
@@ -171,6 +174,48 @@ class YaMetrika
     }
 
     /**
+     * Получаем самые популярные страницы за N дней
+     *
+     * @param int $days
+     * @param int $limit
+     *
+     * @return $this
+     */
+    public function getMostViewedPages($days = 30, $limit = 10)
+    {
+        list($startDate, $endDate) = $this->differenceDate($days);
+
+        $this->getMostViewedPagesForPeriod($startDate, $endDate, $limit);
+
+        return $this;
+    }
+
+    /**
+     * Получаем самые популярные страницы за выбранный период
+     *
+     * @param DateTime $startDate
+     * @param DateTime $endDate
+     * @param int      $limit
+     *
+     * @return $this
+     */
+    public function getMostViewedPagesForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10)
+    {
+        $params = [
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'metrics'    => 'ym:pv:pageviews',
+            'dimensions' => 'ym:pv:URLPathFull,ym:pv:title',
+            'sort'       => '-ym:pv:pageviews',
+            'limit'      => $limit,
+        ];
+
+        $this->data = $this->query($params);
+
+        return $this;
+    }
+
+    /**
      * Отправляем кастомный запрос
      *
      * @param array $params
@@ -195,7 +240,7 @@ class YaMetrika
     private function combineData($column, $array)
     {
         $queryColumn = array_map(function($key) {
-            return str_replace('ym:s:', '', $key);
+            return str_replace(['ym:s:', 'ym:pv:'], '', $key);
         }, $this->data['query'][$column]);
 
         return array_combine($queryColumn, $array);
@@ -211,7 +256,6 @@ class YaMetrika
      */
     private function query($params)
     {
-
         $url = $this->endPoint . '?' . http_build_query(array_merge($params, ['ids' => $this->counterId, 'oauth_token' => $this->token]), null, '&');
 
         try {

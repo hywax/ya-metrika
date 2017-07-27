@@ -63,6 +63,26 @@ getVisitorsForPeriod(DateTime $startDate, DateTime $endDate) : self
 $startDate | DateTime | Начальная дата
 $endDate | DateTime | Конечная дата
 
+### Самые просматриваемые страницы
+#### За последние N дней
+```php
+getMostViewedPages($days = 30, $limit = 10) : self
+```
+Название | Тип | Описание
+---------|-----|----------------------
+$days | integer | Кол-во дней. По умолчанию 30
+$limit | integer | Лимит записей. По умолчанию 10
+
+#### За указанный период
+```php
+getMostViewedPagesForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 10) : self
+```
+Название | Тип | Описание
+---------|-----|----------------------
+$startDate | DateTime | Начальная дата
+$endDate | DateTime | Конечная дата
+$limit | integer | Лимит записей. По умолчанию 10
+
 ### Данные по шаблону
 Шаблоны (preset) автоматически задают метрики и группировки, которые необходимы для того или иного отчета. 
 Список всех шаблонов доступен по ссылке - [tech.yandex.ru/metrika/../presets-docpage](https://tech.yandex.ru/metrika/doc/api2/api_v1/presets/presets-docpage/).
