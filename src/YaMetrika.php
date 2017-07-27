@@ -7,6 +7,11 @@ use Carbon\Carbon;
 use DateTime;
 use GuzzleHttp\Client as GuzzleClient;
 
+/**
+ * Class YaMetrika
+ *
+ * @package AXP\YaMetrika
+ */
 class YaMetrika
 {
     /**
@@ -14,35 +19,35 @@ class YaMetrika
      *
      * @var string
      */
-    protected $endPoint = 'https://api-metrika.yandex.ru/stat/v1/data';
+    private $endPoint = 'https://api-metrika.yandex.ru/stat/v1/data';
 
     /**
      * Token API
      *
      * @var string
      */
-    protected $token;
+    private $token;
 
     /**
      * Id счётчика
      *
      * @var int
      */
-    protected $counterId;
+    private $counterId;
 
     /**
      * Данные из метрики
      *
      * @var array
      */
-    protected $data;
+    public $data;
 
     /**
      * Форматированные данные
      *
      * @var array
      */
-    protected $formatData;
+    public $formatData;
 
     /**
      * YaMetrika constructor
@@ -57,13 +62,31 @@ class YaMetrika
     }
 
     /**
-     * Получаем данные
+     * Форматируем данные
      *
-     * @return mixed
+     * @return $this
      */
-    public function get()
+    public function format()
     {
-        return $this->data;
+        if ( $data = $this->data ) {
+            $formatted = [
+                'data'   => [],
+                'totals' => $this->combineData('metrics', $data['totals']),
+                'min'    => $this->combineData('metrics', $data['min']),
+                'max'    => $this->combineData('metrics', $data['max']),
+            ];
+
+            foreach ($data['data'] as $key => $datum) {
+                $formatted['data'][$key] = [
+                    'dimensions' => $this->combineData('dimensions', $datum['dimensions']),
+                    'metrics'    => $this->combineData('metrics', $datum['metrics']),
+                ];
+            }
+
+            $this->formatData = $formatted;
+        }
+
+        return $this;
     }
 
     /**
@@ -74,11 +97,11 @@ class YaMetrika
      *
      * @return $this
      */
-    public function setPreset($template, $days = 30)
+    public function getPreset($template, $days = 30)
     {
         list($startDate, $endDate) = $this->differenceDate($days);
 
-        $this->setPresetForPeriod($template, $startDate, $endDate);
+        $this->getPresetForPeriod($template, $startDate, $endDate);
 
         return $this;
     }
@@ -93,7 +116,7 @@ class YaMetrika
      *
      * @return $this
      */
-    public function setPresetForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 10)
+    public function getPresetForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 10)
     {
         $params = [
             'preset'    => $template,
@@ -112,11 +135,30 @@ class YaMetrika
      *
      * @param array $params
      *
-     * @return array
+     * @return $this
      */
     public function customQuery($params)
     {
-        return $this->query($params);
+        $this->data = $this->query($params);
+
+        return $this;
+    }
+
+    /**
+     * Объединяем массивы для формирования ключей
+     *
+     * @param string $column
+     * @param array $array
+     *
+     * @return array
+     */
+    private function combineData($column, $array)
+    {
+        $queryColumn = array_map(function($key) {
+            return str_replace('ym:s:', '', $key);
+        }, $this->data['query'][$column]);
+
+        return array_combine($queryColumn, $array);
     }
 
     /**
@@ -127,7 +169,7 @@ class YaMetrika
      * @return array
      *
      */
-    protected function query($params)
+    private function query($params)
     {
 
         $url = $this->endPoint . '?' . http_build_query(array_merge($params, ['ids' => $this->counterId, 'oauth_token' => $this->token]), null, '&');
@@ -152,7 +194,7 @@ class YaMetrika
      *
      * @return array
      */
-    protected function differenceDate($amountOfDays)
+    private function differenceDate($amountOfDays)
     {
         $endDate = Carbon::today();
         $startDate = Carbon::today()->subDays($amountOfDays);

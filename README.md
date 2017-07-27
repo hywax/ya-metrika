@@ -2,15 +2,21 @@
 Библиотека для удобного взаимодействия с Yandex Metrika API
 
 ## Использование
-Для получения данных необходимо дополнительно вызвать метод `get`. Исключение использование `customQuery`.
+Для форматирования данных необходимо вызвать `format()`. Для произвольных запросов данный метод также работает.
 ### Инициализация
 ```php
 $token = '';
 $counter_id = '';
 $YaMetrika = new YaMetrika($token, $counter_id);
 
-// Пример использования
-$traffic = $YaMetrika->setPreset('sources_summary', 30)->get();
+// Пример использования без форматирвоания
+$traffic = $YaMetrika->getPreset('traffic', 30)
+                     ->data;
+
+// Пример использования с форматированием
+$traffic = $YaMetrika->getPreset('traffic', 30)
+                     ->format()
+                     ->formatData;
                      
 // Пример произвольного запроса
 $data = [
@@ -18,7 +24,8 @@ $data = [
     'date2'     => Carbon::today(),
     'metrics'   => 'ym:s:visits',
 ];
-$visits = $YaMetrika->customQuery($data);
+$visits = $YaMetrika->customQuery($data)
+                    ->data;
 ```
 
 ### Данные по шаблону
@@ -43,10 +50,10 @@ $template | string | Название шаблона
 $startDate | DateTime | Начальная дата
 $endDate | DateTime | Конечная дата
 
-#### Произвольный запрос
+### Произвольный запрос
 Параметры `ids` и `oauth_token` передавать не нужно.
 ```php
-public function customQuery($params) : array
+public function customQuery($params) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
