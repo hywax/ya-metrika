@@ -132,6 +132,45 @@ class YaMetrika
     }
 
     /**
+     * Получаем данные о посещаемости за последние N дней
+     *
+     * @param int $days
+     *
+     * @return $this
+     */
+    public function getVisitors($days = 30)
+    {
+        list($startDate, $endDate) = $this->differenceDate($days);
+
+        $this->getVisitorsForPeriod($startDate, $endDate);
+
+        return $this;
+    }
+
+    /**
+     * Получаем данные о посещаемости за выбранный период
+     *
+     * @param DateTime $startDate
+     * @param DateTime $endDate
+     *
+     * @return $this
+     */
+    public function getVisitorsForPeriod(DateTime $startDate, DateTime $endDate)
+    {
+        $params = [
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'metrics'    => 'ym:s:visits,ym:s:pageviews,ym:s:users',
+            'dimensions' => 'ym:s:date',
+            'sort'       => 'ym:s:date',
+        ];
+
+        $this->data = $this->query($params);
+
+        return $this;
+    }
+
+    /**
      * Отправляем кастомный запрос
      *
      * @param array $params

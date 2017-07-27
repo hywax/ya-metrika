@@ -28,6 +28,26 @@ $visits = $YaMetrika->customQuery($data)
                     ->data;
 ```
 
+### Данные по посещаемости
+Будут получены данные: визитов, просмотров, уникальных посетителей по дням.
+
+#### За последние N дней
+```php
+getVisitors($days = 30) : self
+```
+Название | Тип | Описание
+---------|-----|----------------------
+$days | integer | Кол-во дней. По умолчанию 30
+
+#### За указанный период
+```php
+getVisitorsForPeriod(DateTime $startDate, DateTime $endDate) : self
+```
+Название | Тип | Описание
+---------|-----|----------------------
+$startDate | DateTime | Начальная дата
+$endDate | DateTime | Конечная дата
+
 ### Данные по шаблону
 Шаблоны (preset) автоматически задают метрики и группировки, которые необходимы для того или иного отчета. 
 Список всех шаблонов доступен по ссылке - [tech.yandex.ru/metrika/../presets-docpage](https://tech.yandex.ru/metrika/doc/api2/api_v1/presets/presets-docpage/).

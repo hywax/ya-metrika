@@ -1,5 +1,5 @@
 .idea/
 vendor/
-examples/
+examples/config.php
 composer.phar
 composer.lock
