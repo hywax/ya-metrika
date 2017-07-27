@@ -94,14 +94,15 @@ class YaMetrika
      *
      * @param string $template
      * @param int    $days
+     * @param int    $limit
      *
      * @return $this
      */
-    public function getPreset($template, $days = 30)
+    public function getPreset($template, $days = 30, $limit = 10)
     {
         list($startDate, $endDate) = $this->differenceDate($days);
 
-        $this->getPresetForPeriod($template, $startDate, $endDate);
+        $this->getPresetForPeriod($template, $startDate, $endDate, $limit);
 
         return $this;
     }

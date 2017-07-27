@@ -10,11 +10,11 @@ $counter_id = '';
 $YaMetrika = new YaMetrika($token, $counter_id);
 
 // Пример использования без форматирвоания
-$traffic = $YaMetrika->getPreset('traffic', 30)
+$traffic = $YaMetrika->getPreset('traffic')
                      ->data;
 
 // Пример использования с форматированием
-$traffic = $YaMetrika->getPreset('traffic', 30)
+$traffic = $YaMetrika->getPreset('traffic', 30, 15)
                      ->format()
                      ->formatData;
                      
@@ -33,12 +33,13 @@ $visits = $YaMetrika->customQuery($data)
 Список всех шаблонов доступен по ссылке - [tech.yandex.ru/metrika/../presets-docpage](https://tech.yandex.ru/metrika/doc/api2/api_v1/presets/presets-docpage/).
 #### За последние N дней
 ```php
-getPreset($template, $days = 30) : self
+getPreset($template, $days = 30, $limit = 10) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
 $template | string | Название шаблона
 $days | integer | Кол-во дней. По умолчанию 30
+$limit | integer | Лимит записей. По умолчанию 10
 
 #### За указанный период
 ```php
@@ -49,6 +50,7 @@ getPresetForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 1
 $template | string | Название шаблона
 $startDate | DateTime | Начальная дата
 $endDate | DateTime | Конечная дата
+$limit | integer | Лимит записей. По умолчанию 10
 
 ### Произвольный запрос
 Параметры `ids` и `oauth_token` передавать не нужно.
@@ -57,4 +59,4 @@ public function customQuery($params) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
-$params | array | Параметры
+$params | array | Параметры запроса
