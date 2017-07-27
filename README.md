@@ -35,8 +35,8 @@ $traffic = $YaMetrika->getPreset('traffic', 30, 15)
                      
 // Пример произвольного запроса
 $data = [
-    'date1'     => Carbon::yesterday(),
-    'date2'     => Carbon::today(),
+    'date1'     => Carbon::yesterday()->format('Y-m-d'),
+    'date2'     => Carbon::today()->format('Y-m-d'),
     'metrics'   => 'ym:s:visits',
 ];
 $visits = $YaMetrika->customQuery($data)

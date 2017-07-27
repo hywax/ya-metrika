@@ -12,7 +12,6 @@ use GuzzleHttp\Client as GuzzleClient;
  *
  * @author  Alexander Pushkarev <axp-dev@yandex.com>
  * @link    https://github.com/axp-dev/ya-metrika
- * @license MIT License
  * @package AXP\YaMetrika
  */
 class YaMetrika
