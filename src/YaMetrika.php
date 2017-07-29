@@ -256,6 +256,48 @@ class YaMetrika
     }
 
     /**
+     * Получаем посетителей с поисковых систем за N дней
+     *
+     * @param int $days
+     * @param int $limit
+     *
+     * @return $this
+     */
+    public function getUsersSearchEngine($days = 30, $limit = 10)
+    {
+        list($startDate, $endDate) = $this->differenceDate($days);
+
+        $this->getUsersSearchEngineForPeriod($startDate, $endDate, $limit);
+
+        return $this;
+    }
+
+    /**
+     * Получаем посетителей с поисковых систем за выбранный период
+     *
+     * @param DateTime $startDate
+     * @param DateTime $endDate
+     * @param int      $limit
+     *
+     * @return $this
+     */
+    public function getUsersSearchEngineForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10)
+    {
+        $params = [
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'metrics'    => 'ym:s:users',
+            'dimensions' => 'ym:s:searchEngine',
+            'filters'    => "ym:s:trafficSource=='organic'",
+            'limit'      => $limit,
+        ];
+
+        $this->data = $this->query($params);
+
+        return $this;
+    }
+
+    /**
      * Отправляем кастомный запрос
      *
      * @param array $params
