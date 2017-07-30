@@ -6,6 +6,7 @@ use AXP\YaMetrika\Exceptions\YaMetrikaException;
 use Carbon\Carbon;
 use DateTime;
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\ClientException;
 
 /**
  * Class YaMetrika
@@ -298,6 +299,48 @@ class YaMetrika
     }
 
     /**
+     * Получаем посетителей по странам и регионам за N дней
+     *
+     * @param int $days
+     * @param int $limit
+     *
+     * @return $this
+     */
+    public function getGeo($days = 7, $limit = 20)
+    {
+        list($startDate, $endDate) = $this->differenceDate($days);
+
+        $this->getGeoForPeriod($startDate, $endDate, $limit);
+
+        return $this;
+    }
+
+    /**
+     * Получаем посетителей по странам и регионам за выбранный период
+     *
+     * @param DateTime $startDate
+     * @param DateTime $endDate
+     * @param int      $limit
+     *
+     * @return $this
+     */
+    public function getGeoForPeriod(DateTime $startDate, DateTime $endDate, $limit = 20)
+    {
+        $params = [
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'dimensions' => 'ym:s:regionCountry,ym:s:regionArea',
+            'metrics'    => 'ym:s:visits',
+            'sort'       => '-ym:s:visits',
+            'limit'      => $limit,
+        ];
+
+        $this->data = $this->query($params);
+
+        return $this;
+    }
+
+    /**
      * Отправляем кастомный запрос
      *
      * @param array $params
@@ -334,7 +377,7 @@ class YaMetrika
      * @param array $params
      *
      * @return array
-     *
+     * @throws YaMetrikaException
      */
     private function query($params)
     {
@@ -346,11 +389,9 @@ class YaMetrika
             $result = json_decode($response->getBody(), true);
 
             return $result;
-        } catch (YaMetrikaException $e) {
-            echo 'Ya Metrika: '.$e->getMessage();
+        } catch (ClientException $e) {
+            throw new YaMetrikaException($e->getMessage());
         }
-
-        return [];
     }
 
     /**

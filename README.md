@@ -1,6 +1,11 @@
 # Yandex Metrika API
 Библиотека для удобного взаимодействия с Yandex Metrika API
 
+[![Latest Stable Version](https://poser.pugx.org/axp-dev/ya-metrika/v/stable)](https://packagist.org/packages/axp-dev/ya-metrika)
+[![Total Downloads](https://poser.pugx.org/axp-dev/ya-metrika/downloads)](https://packagist.org/packages/axp-dev/ya-metrika)
+[![Latest Unstable Version](https://poser.pugx.org/axp-dev/ya-metrika/v/unstable)](https://packagist.org/packages/axp-dev/ya-metrika)
+[![License](https://poser.pugx.org/axp-dev/ya-metrika/license)](https://packagist.org/packages/axp-dev/ya-metrika)
+
 ## Использование
 Для форматирования данных необходимо вызвать `format()`. Для произвольных запросов данный метод также работает.
 
@@ -116,6 +121,26 @@ $limit | integer | Лимит записей. По умолчанию 10
 #### За указанный период
 ```php
 getUsersSearchEngineForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 10) : self
+```
+Название | Тип | Описание
+---------|-----|----------------------
+$startDate | DateTime | Начальная дата
+$endDate | DateTime | Конечная дата
+$limit | integer | Лимит записей. По умолчанию 10
+
+### Пользователи по странам и регионам
+#### За последние N дней
+```php
+getGeo($days = 7, $limit = 20) : self
+```
+Название | Тип | Описание
+---------|-----|----------------------
+$days | integer | Кол-во дней. По умолчанию 30
+$limit | integer | Лимит записей. По умолчанию 10
+
+#### За указанный период
+```php
+getGeoForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 20) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
