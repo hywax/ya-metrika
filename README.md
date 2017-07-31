@@ -80,7 +80,7 @@ $limit | integer | Лимит записей. По умолчанию 10
 
 #### За указанный период
 ```php
-getMostViewedPagesForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 10) : self
+getMostViewedPagesForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -100,7 +100,7 @@ $limit | integer | Лимит записей. По умолчанию 10
 
 #### За указанный период
 ```php
-getBrowsersForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 10) : self
+getBrowsersForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -120,7 +120,7 @@ $limit | integer | Лимит записей. По умолчанию 10
 
 #### За указанный период
 ```php
-getUsersSearchEngineForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 10) : self
+getUsersSearchEngineForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -140,13 +140,33 @@ $limit | integer | Лимит записей. По умолчанию 10
 
 #### За указанный период
 ```php
-getGeoForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 20) : self
+getGeoForPeriod(DateTime $startDate, DateTime $endDate, $limit = 20) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
 $startDate | DateTime | Начальная дата
 $endDate | DateTime | Конечная дата
 $limit | integer | Лимит записей. По умолчанию 10
+
+### Пол и возраст пользователей
+#### За последние N дней
+```php
+getAgeGender($days = 30, $limit = 20) : self
+```
+Название | Тип | Описание
+---------|-----|----------------------
+$days | integer | Кол-во дней. По умолчанию 30
+$limit | integer | Лимит записей. По умолчанию 20
+
+#### За указанный период
+```php
+getAgeGenderForPeriod(DateTime $startDate, DateTime $endDate, $limit = 20) : self
+```
+Название | Тип | Описание
+---------|-----|----------------------
+$startDate | DateTime | Начальная дата
+$endDate | DateTime | Конечная дата
+$limit | integer | Лимит записей. По умолчанию 20
 
 ### Данные по шаблону
 Шаблоны (preset) автоматически задают метрики и группировки, которые необходимы для того или иного отчета. 

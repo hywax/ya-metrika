@@ -341,6 +341,46 @@ class YaMetrika
     }
 
     /**
+     * Получаем возраст и пол посетителей за N дней
+     *
+     * @param int $days
+     * @param int $limit
+     *
+     * @return $this
+     */
+    public function getAgeGender($days = 30, $limit = 20)
+    {
+        list($startDate, $endDate) = $this->differenceDate($days);
+
+        $this->getAgeGenderForPeriod($startDate, $endDate, $limit);
+
+        return $this;
+    }
+
+    /**
+     * Получаем возраст и пол посетителей за выбранный период
+     *
+     * @param DateTime $startDate
+     * @param DateTime $endDate
+     * @param int      $limit
+     *
+     * @return $this
+     */
+    public function getAgeGenderForPeriod(DateTime $startDate, DateTime $endDate, $limit = 20)
+    {
+        $params = [
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'preset'     => 'age_gender',
+            'limit'      => $limit,
+        ];
+
+        $this->data = $this->query($params);
+
+        return $this;
+    }
+
+    /**
      * Отправляем кастомный запрос
      *
      * @param array $params
