@@ -53,7 +53,7 @@ $visits = $YaMetrika->customQuery($data)
 
 #### За последние N дней
 ```php
-getVisitors($days = 30) : self
+public function getVisitors($days = 30) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -61,7 +61,7 @@ $days | integer | Кол-во дней. По умолчанию 30
 
 #### За указанный период
 ```php
-getVisitorsForPeriod(DateTime $startDate, DateTime $endDate) : self
+public function getVisitorsForPeriod(DateTime $startDate, DateTime $endDate) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -71,7 +71,7 @@ $endDate | DateTime | Конечная дата
 ### Самые просматриваемые страницы
 #### За последние N дней
 ```php
-getMostViewedPages($days = 30, $limit = 10) : self
+public function getMostViewedPages($days = 30, $limit = 10) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -80,7 +80,7 @@ $limit | integer | Лимит записей. По умолчанию 10
 
 #### За указанный период
 ```php
-getMostViewedPagesForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10) : self
+public function getMostViewedPagesForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -91,7 +91,7 @@ $limit | integer | Лимит записей. По умолчанию 10
 ### Браузеры пользователей
 #### За последние N дней
 ```php
-getBrowsers($days = 30, $limit = 10) : self
+public function getBrowsers($days = 30, $limit = 10) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -100,7 +100,7 @@ $limit | integer | Лимит записей. По умолчанию 10
 
 #### За указанный период
 ```php
-getBrowsersForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10) : self
+public function getBrowsersForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -111,7 +111,7 @@ $limit | integer | Лимит записей. По умолчанию 10
 ### Пользователи из поисковых систем
 #### За последние N дней
 ```php
-getUsersSearchEngine($days = 30, $limit = 10) : self
+public function getUsersSearchEngine($days = 30, $limit = 10) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -120,7 +120,7 @@ $limit | integer | Лимит записей. По умолчанию 10
 
 #### За указанный период
 ```php
-getUsersSearchEngineForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10) : self
+public function getUsersSearchEngineForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -131,7 +131,7 @@ $limit | integer | Лимит записей. По умолчанию 10
 ### Пользователи по странам и регионам
 #### За последние N дней
 ```php
-getGeo($days = 7, $limit = 20) : self
+public function getGeo($days = 7, $limit = 20) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -140,7 +140,7 @@ $limit | integer | Лимит записей. По умолчанию 20
 
 #### За указанный период
 ```php
-getGeoForPeriod(DateTime $startDate, DateTime $endDate, $limit = 20) : self
+public function getGeoForPeriod(DateTime $startDate, DateTime $endDate, $limit = 20) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -151,7 +151,7 @@ $limit | integer | Лимит записей. По умолчанию 20
 ### Пол и возраст пользователей
 #### За последние N дней
 ```php
-getAgeGender($days = 30, $limit = 20) : self
+public function getAgeGender($days = 30, $limit = 20) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -160,7 +160,7 @@ $limit | integer | Лимит записей. По умолчанию 20
 
 #### За указанный период
 ```php
-getAgeGenderForPeriod(DateTime $startDate, DateTime $endDate, $limit = 20) : self
+public function getAgeGenderForPeriod(DateTime $startDate, DateTime $endDate, $limit = 20) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -173,7 +173,7 @@ $limit | integer | Лимит записей. По умолчанию 20
 Список всех шаблонов доступен по ссылке - [tech.yandex.ru/metrika/../presets-docpage](https://tech.yandex.ru/metrika/doc/api2/api_v1/presets/presets-docpage/).
 #### За последние N дней
 ```php
-getPreset($template, $days = 30, $limit = 10) : self
+public function getPreset($template, $days = 30, $limit = 10) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
@@ -183,7 +183,7 @@ $limit | integer | Лимит записей. По умолчанию 10
 
 #### За указанный период
 ```php
-getPresetForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 10) : self
+public function getPresetForPeriod($template, DateTime $startDate, DateTime $endDate, $limit = 10) : self
 ```
 Название | Тип | Описание
 ---------|-----|----------------------
