@@ -2,7 +2,6 @@
 Библиотека для удобного взаимодействия с Yandex Metrika API
 
 [![Latest Stable Version](https://poser.pugx.org/axp-dev/ya-metrika/v/stable)](https://packagist.org/packages/axp-dev/ya-metrika)
-[![Total Downloads](https://poser.pugx.org/axp-dev/ya-metrika/downloads)](https://packagist.org/packages/axp-dev/ya-metrika)
 [![Latest Unstable Version](https://poser.pugx.org/axp-dev/ya-metrika/v/unstable)](https://packagist.org/packages/axp-dev/ya-metrika)
 [![License](https://poser.pugx.org/axp-dev/ya-metrika/license)](https://packagist.org/packages/axp-dev/ya-metrika)
 
