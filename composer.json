@@ -3,7 +3,7 @@
   "description": "Yandex Metrika API Library",
   "homepage": "https://github.com/axp-dev/ya-metrika",
   "keywords": ["yandex","metrika","api"],
-  "version": "1.0.1",
+  "version": "1.0.11",
   "license": "MIT",
   "authors": [
     {

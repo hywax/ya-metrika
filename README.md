@@ -219,4 +219,4 @@ $params | array | Параметры запроса
 [Alexander Pushkarev](https://github.com/axp-dev), e-mail: [axp-dev@yandex.com](mailto:axp-dev@yandex.com)
 
 ## Лицензия
-Основой Cinema Park API являет открытый исходный код, в соответствии [MIT license](https://opensource.org/licenses/MIT)
+Основой Yandex Metrika API являет открытый исходный код, в соответствии [MIT license](https://opensource.org/licenses/MIT)
