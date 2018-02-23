@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use DateTime;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\RequestOptions;
 
 /**
  * Class YaMetrika
@@ -39,6 +40,13 @@ class YaMetrika
     private $counterId;
 
     /**
+     * Proxy
+     *
+     * @var string
+     */
+    private $proxy;
+
+    /**
      * Данные из метрики
      *
      * @var array
@@ -57,11 +65,13 @@ class YaMetrika
      *
      * @param string $token
      * @param        $counterId
+     * @param string $proxy [user:pass@]host:port
      */
-    function __construct($token, $counterId)
+    function __construct($token, $counterId, $proxy = null)
     {
         $this->token = $token;
         $this->counterId = $counterId;
+        $this->proxy = $proxy;
     }
 
     /**
@@ -424,7 +434,7 @@ class YaMetrika
         $url = $this->endPoint . '?' . http_build_query(array_merge($params, ['ids' => $this->counterId, 'oauth_token' => $this->token]), null, '&');
 
         try {
-            $client = new GuzzleClient();
+            $client = new GuzzleClient($this->getHttpClientParams());
             $response = $client->request('GET', $url);
             $result = json_decode($response->getBody(), true);
 
@@ -447,5 +457,18 @@ class YaMetrika
         $startDate = Carbon::today()->subDays($amountOfDays);
 
         return [$startDate, $endDate];
+    }
+
+    /**
+     * Получаем массив параметров запроса для HTTP клиента
+     *
+     * @return array
+     */
+    private function getHttpClientParams()
+    {
+        $params = [];
+        if ($this->proxy) $params[RequestOptions::PROXY] = $this->proxy;
+
+        return $params;
     }
 }
