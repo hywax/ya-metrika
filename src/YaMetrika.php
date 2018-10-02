@@ -415,7 +415,7 @@ class YaMetrika
     private function combineData($column, $array)
     {
         $queryColumn = array_map(function($key) {
-            return str_replace(['ym:s:', 'ym:pv:', 'ym:ad:'], '', $key);
+            return str_replace(['ym:s:', 'ym:pv:', 'ym:ad:', 'ym:sp:'], '', $key);
         }, $this->data['query'][$column]);
 
         return array_combine($queryColumn, $array);
