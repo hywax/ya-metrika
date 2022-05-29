@@ -1,5 +1,19 @@
-.idea/
-vendor/
-examples/config.php
+# Logs
+logs
+*.log
+
+.env
 composer.phar
 composer.lock
+vendor
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
