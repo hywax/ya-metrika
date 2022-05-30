@@ -24,6 +24,7 @@
 3. [Ответ](#Ответ)
     + [Чистые данные](#Чистые-данные)
     + [Отформатированные данные](#Отформатированные-данные)
+    + [Свой формат данных](#Свой-формат-данных)
 4. [Автор](#Автор)
 5. [Лицензия](#Лицензия)
 
@@ -54,6 +55,7 @@ $metrika = new YaMetrika($client);
 + [Данные о посещаемости](https://github.com/axp-dev/ya-metrika/blob/master/example/visitors.php)
 + [Логирование запросов](https://github.com/axp-dev/ya-metrika/blob/master/example/logger.php)
 + [Использование Proxy](https://github.com/axp-dev/ya-metrika/blob/master/example/proxy.php)
++ [Использование custom format](https://github.com/axp-dev/ya-metrika/blob/master/example/format.php)
 
 ## Использование
 ### Данные по посещаемости
@@ -240,6 +242,12 @@ public function rawData(): array
 Возвращает отформатированные данные. Будут переименованы поля, удалены ненужные префиксы.
 ```php
 public function formatData(): array
+```
+
+### Свой формат данных
+Возвращает отформатированные данные. Будут переименованы поля, удалены ненужные префиксы.
+```php
+public function customFormat(callable $callback): array
 ```
 
 ## Автор

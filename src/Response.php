@@ -57,6 +57,11 @@ class Response
         return $this->data;
     }
 
+    public function customFormat(callable $callback): array
+    {
+        return $callback($this->data);
+    }
+
     private function combineData(string $column, array $array): array
     {
         $queryColumn = array_map(function($key) {
