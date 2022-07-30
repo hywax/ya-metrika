@@ -25,6 +25,7 @@
     + [Чистые данные](#Чистые-данные)
     + [Отформатированные данные](#Отформатированные-данные)
     + [Свой формат данных](#Свой-формат-данных)
+    + [Группировка по ключам](#Группировка-по-ключам)
 4. [Автор](#Автор)
 5. [Лицензия](#Лицензия)
 
@@ -249,6 +250,13 @@ public function formatData(): array
 ```php
 public function customFormat(callable $callback): array
 ```
+
+### Группировка по ключам
+По умолчанию отформатированные данные группируются по ключам:
+```
+ym:s:, ym:pv:, ym:ad:, ym:sp:
+```
+Если вам требуется добавить/удалить группировку, то воспользуйтесь `setCombineKeys` у `Response`
 
 ## Автор
 [Alexander Pushkarev](https://github.com/axp-dev), e-mail: [axp-dev@yandex.com](mailto:axp-dev@yandex.com)

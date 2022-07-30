@@ -23,6 +23,16 @@ class Response
     {
     }
 
+    public function getCombineKeys(): array
+    {
+        return $this->combineKeys;
+    }
+
+    public function setCombineKeys(array $combineKeys): void
+    {
+        $this->combineKeys = $combineKeys;
+    }
+
     public function formatData(): array
     {
         if ($this->cachedFormat) {
