@@ -12,8 +12,8 @@
     }
   ],
   "require": {
-    "php": ">=8.0",
-    "guzzlehttp/guzzle": "^7.4.3"
+    "php": "^8.1",
+    "guzzlehttp/guzzle": "^7.8.1"
   },
   "require-dev": {
     "monolog/monolog": "^2.6.0"
