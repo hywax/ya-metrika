@@ -45,6 +45,24 @@ class ReportService extends Service
         ]);
     }
 
+    public function getVisitors(int $days = 30): array
+    {
+        list($startDate, $endDate) = Utils::getDifferenceDate($days);
+
+        return $this->getVisitorsForPeriod($startDate, $endDate);
+    }
+
+    public function getVisitorsForPeriod(DateTime $startDate, DateTime $endDate): array
+    {
+        return $this->call([
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'metrics'    => 'ym:s:visits,ym:s:pageviews,ym:s:users',
+            'dimensions' => 'ym:s:date',
+            'sort'       => 'ym:s:date',
+        ]);
+    }
+
     public function getCustomQuery(array $params): array
     {
         return $this->call($params);
