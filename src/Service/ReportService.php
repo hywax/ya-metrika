@@ -137,7 +137,24 @@ class ReportService extends Service
             'limit'      => $limit,
         ]);
     }
-    
+
+    public function getAgeGender($days = 30, int $limit = 20): array
+    {
+        list($startDate, $endDate) = Utils::getDifferenceDate($days);
+
+        return $this->getAgeGenderForPeriod($startDate, $endDate, $limit);
+    }
+
+    public function getAgeGenderForPeriod(DateTime $startDate, DateTime $endDate, int $limit = 20): array
+    {
+        return $this->call([
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'preset'     => 'age_gender',
+            'limit'      => $limit,
+        ]);
+    }
+
     public function getCustomQuery(array $params): array
     {
         return $this->call($params);
