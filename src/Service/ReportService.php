@@ -82,6 +82,25 @@ class ReportService extends Service
         ]);
     }
 
+    public function getBrowsers(int $days = 30, int $limit = 10): array
+    {
+        list($startDate, $endDate) = Utils::getDifferenceDate($days);
+
+        return $this->getBrowsersForPeriod($startDate, $endDate, $limit);
+    }
+
+    public function getBrowsersForPeriod(DateTime $startDate, DateTime $endDate, int $limit = 10): array
+    {
+        return $this->call([
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'preset'     => 'tech_platforms',
+            'dimensions' => 'ym:s:browser',
+            'limit'      => $limit,
+        ]);
+    }
+
+
     public function getCustomQuery(array $params): array
     {
         return $this->call($params);
