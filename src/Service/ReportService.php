@@ -63,6 +63,25 @@ class ReportService extends Service
         ]);
     }
 
+    public function getMostViewedPages(int $days = 30, int $limit = 10): array
+    {
+        list($startDate, $endDate) = Utils::getDifferenceDate($days);
+
+        return $this->getMostViewedPagesForPeriod($startDate, $endDate, $limit);
+    }
+
+    public function getMostViewedPagesForPeriod(DateTime $startDate, DateTime $endDate, int $limit = 10): array
+    {
+        return $this->call([
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'metrics'    => 'ym:pv:pageviews',
+            'dimensions' => 'ym:pv:URLPathFull,ym:pv:title',
+            'sort'       => '-ym:pv:pageviews',
+            'limit'      => $limit,
+        ]);
+    }
+
     public function getCustomQuery(array $params): array
     {
         return $this->call($params);
