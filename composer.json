@@ -12,8 +12,10 @@
     }
   ],
   "scripts": {
-    "lint": "composer run lint:phpstan",
-    "lint:phpstan": "phpstan"
+    "lint": "composer run lint:phpstan && composer run lint:phpcs",
+    "lint:phpstan": "phpstan",
+    "lint:phpcs": "phpcs .",
+    "lint:fix": "phpcbf ."
   },
   "require": {
     "php": "^8.1",
@@ -21,7 +23,8 @@
   },
   "require-dev": {
     "monolog/monolog": "^2.6.0",
-    "phpstan/phpstan": "^1.0"
+    "phpstan/phpstan": "^1.0",
+    "squizlabs/php_codesniffer": "^3.7.2"
   },
   "autoload": {
     "psr-4": {

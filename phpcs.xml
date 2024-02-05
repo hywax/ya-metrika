@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="ya-metrika-php">
+    <exclude-pattern>./cache</exclude-pattern>
+    <exclude-pattern>./vendor</exclude-pattern>
+
+    <rule ref="PSR12"/>
+</ruleset>
