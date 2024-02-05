@@ -1,6 +1,6 @@
 <?php
 
-include '../vendor/autoload.php';
+include '../../vendor/autoload.php';
 
 use Hywax\YaMetrika\Exception\ClientException;
 use Hywax\YaMetrika\Service\ReportService;
