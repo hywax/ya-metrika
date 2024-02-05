@@ -155,6 +155,23 @@ class ReportService extends Service
         ]);
     }
 
+    public function getSearchPhrases($days = 30, int $limit = 20): array
+    {
+        list($startDate, $endDate) = Utils::getDifferenceDate($days);
+
+        return $this->getSearchPhrasesForPeriod($startDate, $endDate, $limit);
+    }
+
+    public function getSearchPhrasesForPeriod(DateTime $startDate, DateTime $endDate, int $limit = 20): array
+    {
+        return $this->call([
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'preset'     => 'sources_search_phrases',
+            'limit'      => $limit,
+        ]);
+    }
+
     public function getCustomQuery(array $params): array
     {
         return $this->call($params);
