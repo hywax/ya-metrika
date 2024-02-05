@@ -119,6 +119,25 @@ class ReportService extends Service
         ]);
     }
 
+    public function getGeo(int $days = 7, int $limit = 20): array
+    {
+        list($startDate, $endDate) = Utils::getDifferenceDate($days);
+
+        return $this->getGeoForPeriod($startDate, $endDate, $limit);
+    }
+
+    public function getGeoForPeriod(DateTime $startDate, DateTime $endDate, int $limit = 20): array
+    {
+        return $this->call([
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'dimensions' => 'ym:s:regionCountry,ym:s:regionArea',
+            'metrics'    => 'ym:s:visits',
+            'sort'       => '-ym:s:visits',
+            'limit'      => $limit,
+        ]);
+    }
+    
     public function getCustomQuery(array $params): array
     {
         return $this->call($params);
