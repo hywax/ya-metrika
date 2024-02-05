@@ -100,6 +100,24 @@ class ReportService extends Service
         ]);
     }
 
+    public function getUsersSearchEngine(int $days = 30, int $limit = 10): array
+    {
+        list($startDate, $endDate) = Utils::getDifferenceDate($days);
+
+        return $this->getUsersSearchEngineForPeriod($startDate, $endDate, $limit);
+    }
+
+    public function getUsersSearchEngineForPeriod(DateTime $startDate, DateTime $endDate, $limit = 10): array
+    {
+        return $this->call([
+            'date1'      => $startDate->format('Y-m-d'),
+            'date2'      => $endDate->format('Y-m-d'),
+            'metrics'    => 'ym:s:visits,ym:s:users',
+            'dimensions' => 'ym:s:searchEngine',
+            'filters'    => "ym:s:trafficSource=='organic'",
+            'limit'      => $limit,
+        ]);
+    }
 
     public function getCustomQuery(array $params): array
     {
