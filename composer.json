@@ -20,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "AXP\\YaMetrika\\": "src"
+      "Hywax\\YaMetrika\\": "src"
     }
   },
   "minimum-stability": "dev"
