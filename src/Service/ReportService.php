@@ -2,24 +2,47 @@
 
 namespace Hywax\YaMetrika\Service;
 
+use DateTime;
 use GuzzleHttp\Psr7\Request;
 use Hywax\YaMetrika\Client;
+use Hywax\YaMetrika\Exception\ReportServiceException;
 use Hywax\YaMetrika\Interface\Transformer;
 use Hywax\YaMetrika\Service;
 use Hywax\YaMetrika\Transformer\ReportRawTransformer;
+use Hywax\YaMetrika\Utils;
 
 class ReportService extends Service
 {
     private Transformer $resultTransformer;
 
+    private int|string $counterId;
+
     public function __construct(Client|array $clientOrConfig = null)
     {
         if (is_array($clientOrConfig)) {
             $this->resultTransformer = $clientOrConfig['resultTransformer'] ?? new ReportRawTransformer();
+            $this->counterId = $clientOrConfig['counterId'] ?? 0;
             unset($clientOrConfig['resultTransformer']);
         }
 
         parent::__construct($clientOrConfig);
+    }
+
+    public function getPresent(string $preset, int $days = 30, int $limit = 10): array
+    {
+        list($startDate, $endDate) = Utils::getDifferenceDate($days);
+
+        return $this->getPresetForPeriod($preset, $startDate, $endDate, $limit);
+    }
+
+    public function getPresetForPeriod(string $preset, DateTime $startDate, DateTime $endDate, int $limit = 10): array
+    {
+        return $this->call([
+            'preset' => $preset,
+            'date1' => $startDate->format('Y-m-d'),
+            'date2' => $endDate->format('Y-m-d'),
+            'limit' => $limit
+        ]);
     }
 
     public function getCustomQuery(array $params): array
@@ -27,12 +50,30 @@ class ReportService extends Service
         return $this->call($params);
     }
 
+    public function getCounterId(): int|string
+    {
+        return $this->counterId;
+    }
+
+    public function setCounterId(int|string $counterId): void
+    {
+        $this->counterId = $counterId;
+    }
+
     private function call(array $params): array
     {
+        if (!isset($params['ids'])) {
+            $params = array_merge($params, ['ids' => $this->counterId]);
+        }
+
         $this->getClient()->getLogger()->info('Service Call', ['params' => $params]);
 
         $url = sprintf('/stat/v1/data?%s', http_build_query($params, '', '&'));
         $request = new Request('GET', $url);
+
+        if (!$params['ids']) {
+            throw new ReportServiceException('Counter ID is not set');
+        }
 
         return $this->resultTransformer->transform(
             $this->getClient()->execute($request)
