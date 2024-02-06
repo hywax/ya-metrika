@@ -37,7 +37,7 @@ $ composer require hywax/ya-metrika
 
 ## Contributors
 
-![Contributors](https://raw.githubusercontent.com/hywax/ya-metrika/.github/static/contributors.svg)
+![Contributors](https://raw.githubusercontent.com/hywax/ya-metrika/master/.github/static/contributors.svg)
 
 ## License
 
