@@ -24,7 +24,7 @@ jobs:
 
             💖 Thanks for opening this pull request!
 
-            Please follow the [contributing guidelines](#). And we use [semantic commit messages](https://www.conventionalcommits.org/en/v1.0.0/) to streamline the release process.
+            We use [semantic commit messages](https://www.conventionalcommits.org/en/v1.0.0/) to streamline the release process.
 
             Examples of commit messages with semantic prefixes:
             - `fix: interval for sending a request in the base service`
