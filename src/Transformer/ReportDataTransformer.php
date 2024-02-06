@@ -7,20 +7,44 @@ use Hywax\YaMetrika\Interface\Transformer;
 
 class ReportDataTransformer implements Transformer
 {
+    /**
+     * Keys to combine
+     *
+     * @var array<string>
+     */
     private array $combineKeys = [
         'ym:s:', 'ym:pv:', 'ym:ad:', 'ym:sp:'
     ];
 
+    /**
+     * Get the value of combineKeys
+     *
+     * @return array<string>
+     */
     public function getCombineKeys(): array
     {
         return $this->combineKeys;
     }
 
+    /**
+     * Set the value of combineKeys
+     *
+     * @param array<string> $combineKeys
+     *
+     * @return void
+     */
     public function setCombineKeys(array $combineKeys): void
     {
         $this->combineKeys = $combineKeys;
     }
 
+    /**
+     * Transform the data
+     *
+     * @param mixed $data
+     * @return array{data: array<mixed>, totals: array<mixed>, min: array<mixed>, max: array<mixed>}
+     * @throws ReportTransformerException
+     */
     public function transform($data): array
     {
         try {
@@ -44,6 +68,14 @@ class ReportDataTransformer implements Transformer
         }
     }
 
+    /**
+     * Combine the data
+     *
+     * @param string $column
+     * @param array<mixed> $array
+     * @param array<mixed> $data
+     * @return array<mixed>
+     */
     private function combineData(string $column, array $array, array $data): array
     {
         $queryColumn = array_map(function ($key) {
@@ -51,10 +83,5 @@ class ReportDataTransformer implements Transformer
         }, $data['query'][$column]);
 
         return array_combine($queryColumn, $array);
-    }
-
-    public static function call(array $data): array
-    {
-        return (new self($data))->transform();
     }
 }
