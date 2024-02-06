@@ -34,6 +34,15 @@ $ composer require hywax/ya-metrika
 ## Services
 
 * [Reports](./docs/report-service.en.md) - allows you to get information about the statistics of site visits and other data.
+  * [Visitation data](./docs/report-service.en.md#visitation-data)
+  * [Most viewed pages](./docs/report-service.en.md#most-viewed-pages)
+  * [User browsers](./docs/report-service.en.md#user-browsers)
+  * [Users from search engines](./docs/report-service.en.md#users-from-search-engines)
+  * [Users by country and region](./docs/report-service.en.md#users-by-country-and-region)
+  * [Gender and age of users](./docs/report-service.en.md#gender-and-age-of-users)
+  * [Search phrases](./docs/report-service.en.md#search-phrases)
+  * [Data from preset](./docs/report-service.en.md#data-from-preset)
+  * [Custom query](./docs/report-service.en.md#custom-query)
 
 ## Contributors
 
