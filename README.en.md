@@ -1,3 +1,5 @@
+![Yandex Metrika API](https://raw.githubusercontent.com/hywax/ya-metrika/main/.github/static/cover.png)
+
 # Yandex Metrika API
 
 [Русский](./README.md) | **English**
