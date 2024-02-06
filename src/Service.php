@@ -2,12 +2,17 @@
 
 namespace Hywax\YaMetrika;
 
+use Hywax\YaMetrika\Exception\ClientException;
 use TypeError;
 
 abstract class Service
 {
     private Client $client;
 
+    /**
+     * @param Client|array<string,mixed>|null $clientOrConfig
+     * @throws ClientException
+     */
     public function __construct(Client|array $clientOrConfig = null)
     {
         if ($clientOrConfig instanceof Client) {
@@ -19,6 +24,11 @@ abstract class Service
         }
     }
 
+    /**
+     * Get HTTP client
+     *
+     * @return Client
+     */
     protected function getClient(): Client
     {
         return $this->client;
