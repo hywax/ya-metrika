@@ -13,7 +13,7 @@ use Hywax\YaMetrika\Exception\ClientException;
 
 class Client
 {
-    const API_BASE_PATH = 'https://api-metrika.yandex.ru';
+    public const API_BASE_PATH = 'https://api-metrika.yandex.ru';
 
     private array $config;
 
