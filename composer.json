@@ -18,13 +18,13 @@
     "lint:fix": "phpcbf ."
   },
   "require": {
-    "php": "^8.1",
-    "monolog/monolog": "^2.6.0",
+    "php": "^8.3.2",
+    "monolog/monolog": "^2.9.2",
     "guzzlehttp/guzzle": "^7.8.1"
   },
   "require-dev": {
-    "phpstan/phpstan": "^1.0",
-    "squizlabs/php_codesniffer": "^3.7.2"
+    "phpstan/phpstan": "^1.10.57",
+    "squizlabs/php_codesniffer": "^3.8.1"
   },
   "autoload": {
     "psr-4": {
