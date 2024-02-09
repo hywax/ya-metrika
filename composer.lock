@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14ed45eeac5b633ceddafb13db9b73dd",
+    "content-hash": "46bc4f5980626ebce1a788af6d8d057b",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -764,16 +764,16 @@
     "packages-dev": [
         {
             "name": "phpstan/phpstan",
-            "version": "1.11.x-dev",
+            "version": "1.10.57",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "1625a12455c40d922b3e73a755420f0cd5beaa69"
+                "reference": "1627b1d03446904aaa77593f370c5201d2ecc34e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/1625a12455c40d922b3e73a755420f0cd5beaa69",
-                "reference": "1625a12455c40d922b3e73a755420f0cd5beaa69",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/1627b1d03446904aaa77593f370c5201d2ecc34e",
+                "reference": "1627b1d03446904aaa77593f370c5201d2ecc34e",
                 "shasum": ""
             },
             "require": {
@@ -782,7 +782,6 @@
             "conflict": {
                 "phpstan/phpstan-shim": "*"
             },
-            "default-branch": true,
             "bin": [
                 "phpstan",
                 "phpstan.phar"
@@ -823,20 +822,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-05T09:11:46+00:00"
+            "time": "2024-01-24T11:51:34+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "dev-master",
+            "version": "3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "675d8f3134c753eca780f00fe7dc95551cb5e906"
+                "reference": "14f5fff1e64118595db5408e946f3a22c75807f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/675d8f3134c753eca780f00fe7dc95551cb5e906",
-                "reference": "675d8f3134c753eca780f00fe7dc95551cb5e906",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/14f5fff1e64118595db5408e946f3a22c75807f7",
+                "reference": "14f5fff1e64118595db5408e946f3a22c75807f7",
                 "shasum": ""
             },
             "require": {
@@ -848,7 +847,6 @@
             "require-dev": {
                 "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.3.4"
             },
-            "default-branch": true,
             "bin": [
                 "bin/phpcbf",
                 "bin/phpcs"
@@ -904,7 +902,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-02-05T12:29:34+00:00"
+            "time": "2024-01-11T20:47:48+00:00"
         }
     ],
     "aliases": [],
