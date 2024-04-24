@@ -24,7 +24,7 @@
   },
   "require-dev": {
     "phpstan/phpstan": "^1.10.67",
-    "squizlabs/php_codesniffer": "^3.9.1"
+    "squizlabs/php_codesniffer": "^3.9.2"
   },
   "autoload": {
     "psr-4": {
