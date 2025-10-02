@@ -23,7 +23,7 @@
     "guzzlehttp/guzzle": "^7.10.0"
   },
   "require-dev": {
-    "phpstan/phpstan": "^2.1.29",
+    "phpstan/phpstan": "^2.1.30",
     "squizlabs/php_codesniffer": "^3.13.4"
   },
   "autoload": {
