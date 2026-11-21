@@ -20,10 +20,10 @@
   "require": {
     "php": "^8.1",
     "monolog/monolog": "^3.13.0",
-    "guzzlehttp/guzzle": "^7.16.3"
+    "guzzlehttp/guzzle": "^7.16.5"
   },
   "require-dev": {
-    "phpstan/phpstan": "^2.3.6",
+    "phpstan/phpstan": "^2.3.7",
     "squizlabs/php_codesniffer": "^4.0.4"
   },
   "autoload": {
